@@ -1,43 +1,38 @@
-name: Unity Tests
+name: Actions 😎
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+on: [push, pull_request]
 
 jobs:
-  test:
+  build:
+    name: Build my project ✨
     runs-on: ubuntu-latest
-
     steps:
-      # Checkout the repository
+      # Checkout
       - name: Checkout repository
-        uses: actions/checkout@v3
-
-      # Cache Unity packages
-      - name: Cache Unity packages
-        uses: actions/cache@v3
+        uses: actions/checkout@v4
         with:
-          path: ~/.cache/unity3d
-          key: ${{ runner.os }}-unity-cache
+          lfs: true
+
+      # Cache
+      - uses: actions/cache@v3
+        with:
+          path: Library
+          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
           restore-keys: |
-            ${{ runner.os }}-unity-cache
+            Library-
 
-      # Install Unity
-      - name: Setup Unity
-        uses: game-ci/unity-installer@v2
+      # Test
+      - name: Run tests
+        uses: game-ci/unity-test-runner@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
-          version: 2021.3.40f1
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
 
-      # Run Unity Tests
-      - name: Run Unity Unit Tests
-        uses: game-ci/unity-test-runner@v2
+      # Output
+      - uses: actions/upload-artifact@v3
         with:
-          version: 2021.3.40f1
-          testMode: editmode
-
-    env:
-      UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          name: Build
+          path: build
