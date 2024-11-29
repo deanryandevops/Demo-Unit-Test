@@ -4,15 +4,20 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
     steps:
+      # Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      # Cache Unity packages
       - name: Cache Unity packages
         uses: actions/cache@v3
         with:
@@ -31,5 +36,8 @@ jobs:
       - name: Run Unity Unit Tests
         uses: game-ci/unity-test-runner@v2
         with:
-          version: 2021.3.40f1
-          testMode: editmode
+          version: 2021.3.28f1
+          testMode: playmode    # or editmode for Edit Mode tests
+
+    env:
+      UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
