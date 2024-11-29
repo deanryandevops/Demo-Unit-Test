@@ -1,0 +1,35 @@
+name: Unity Tests
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Cache Unity packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/unity3d
+          key: ${{ runner.os }}-unity-cache
+          restore-keys: |
+            ${{ runner.os }}-unity-cache
+
+      # Install Unity
+      - name: Setup Unity
+        uses: game-ci/unity-installer@v2
+        with:
+          version: 2021.3.28f1  # Replace with your Unity version
+
+      # Run Unity Tests
+      - name: Run Unity Unit Tests
+        uses: game-ci/unity-test-runner@v2
+        with:
+          version: 2021.3.40f1
+          testMode: editmode
