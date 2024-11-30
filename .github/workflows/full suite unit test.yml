@@ -1,6 +1,6 @@
 name: Run Full Suite Unit Test
 
-on: workflow_dispatch
+on: push
 
 jobs:
   test:
