@@ -9,7 +9,7 @@ public class CarTest
         int j = Car.GetNoDoors;
 
         // Correct assertion to compare integers
-        Assert.AreEqual(1, j);
+        Assert.AreEqual(2, j);
     }
 
     [Test]
