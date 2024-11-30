@@ -12,7 +12,7 @@ jobs:
       -  uses: webbertakken/unity-request-manual-activation-file@v2
          id: getManualLicenseFile
 
-      -  uses: actions/upload-arifact@v2
+      -  uses: actions/upload-arifact@v4
          with:
            name: Manual Activiation File
            path: ${{ steps.getM.getManualLicenseFile.outputs.filePath }}
