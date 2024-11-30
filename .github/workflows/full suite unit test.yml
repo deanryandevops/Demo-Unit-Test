@@ -23,7 +23,7 @@ jobs:
 
       # Run Unity Edit Mode Tests
       - name: Run Unity Edit Mode Tests
-        uses: game-ci/unity-test-runner@v3
+        uses: game-ci/unity-test-runner@v4
         with:
           testMode: editmode
       
