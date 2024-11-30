@@ -1,4 +1,4 @@
-name: Unity Edit Mode Tests
+name: Run Two Unit Test
 
 on: workflow_dispatch
 
@@ -27,3 +27,11 @@ jobs:
         with:
           testMode: editmode
           customParameters: -testFilter=CarTest.GetNoDoors_Test,CarTest.SetNoDoors_Test
+      
+      # Upload Test Results
+      - name: Upload Test Results
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: Test results
+          path: artifacts

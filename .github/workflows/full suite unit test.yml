@@ -1,0 +1,36 @@
+name: Run Full Suite Unit Test
+
+on: workflow_dispatch
+
+jobs:
+  test:
+    name: Run Edit Mode Tests for CarTest
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Cache Unity packages
+      - name: Cache Unity packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/unity3d
+          key: ${{ runner.os }}-unity-${{ hashFiles('**/Packages/manifest.json') }}
+          restore-keys: |
+            ${{ runner.os }}-unity-
+
+      # Run Unity Edit Mode Tests
+      - name: Run Unity Edit Mode Tests
+        uses: game-ci/unity-test-runner@v3
+        with:
+          testMode: editmode
+      
+      # Upload Test Results
+      - name: Upload Test Results
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: Test results
+          path: artifacts
