@@ -31,6 +31,5 @@ jobs:
       - name: Run Unity Edit Mode Tests
         uses: game-ci/unity-test-runner@v3
         with:
-          version: 2021.3.40f1
           testMode: editmode
           customParameters: -testFilter=CarTest.GetNoDoors_Test,CarTest.SetNoDoors_Test
