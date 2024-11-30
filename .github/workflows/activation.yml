@@ -1,0 +1,18 @@
+name: Full Run
+
+on: workflow_dispatch
+
+jobs:
+  requestManualActivationFile:
+    name: Request manual activation file
+    runs-on: ubuntu-latest
+    steps:
+      -  uses: actions/checkout@v2
+
+      -  uses: webbertakken/unity-request-manual-activation-file@v2
+         id: getManualLicenseFile
+
+      -  uses: actions/upload-arifact@v2
+         with:
+           name: Manual Activiation File
+           path: ${{ steps.getM.getManualLicenseFile.outputs.filePath }}
