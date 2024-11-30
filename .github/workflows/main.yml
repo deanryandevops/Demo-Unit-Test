@@ -27,13 +27,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-unity-
 
-      # Install Unity Editor
-      - name: Install Unity
-        uses: game-ci/unity-installer@v3
-        with:
-          version: 2021.3.40f1
-
-      # Run Unity Edit Mode Tests for CarTest
+      # Run Unity Edit Mode Tests
       - name: Run Unity Edit Mode Tests
         uses: game-ci/unity-test-runner@v3
         with:
