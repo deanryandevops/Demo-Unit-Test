@@ -30,7 +30,6 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           testMode: editmode
-          githubToken: ${{ secrets.TOKEN }}
       
       # Upload Test Results
       - name: Upload Test Results
