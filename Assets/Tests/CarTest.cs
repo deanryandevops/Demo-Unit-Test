@@ -2,24 +2,31 @@ using NUnit.Framework;
 
 public class CarTest
 {
+    [SetUp]
+    public void Setup()
+    {
+        // Reset the state before each test (if needed)
+        Car.SetNoDoors(0);
+    }
+
     [Test]
     public void GetNoDoors_Test()
     {
-        // Assuming GetNoDoors is a static property
-        int j = Car.GetNoDoors;
+        // Set an initial value for validation
+        Car.SetNoDoors(2);
 
-        // Correct assertion to compare integers
-        Assert.AreEqual(2, j);
+        // Get the value and check it
+        int j = Car.GetNoDoors;
+        Assert.AreEqual(2, j, "The number of doors should be 2.");
     }
 
     [Test]
     public void SetNoDoors_Test()
     {
-        // Assuming SetNoDoors is a static method that sets the number of doors
-        Car.SetNoDoors(2);
+        // Set the number of doors and verify it
+        Car.SetNoDoors(3);
 
-        // Check if the number of doors was correctly set
         int j = Car.GetNoDoors;
-        Assert.AreEqual(2, j);
+        Assert.AreEqual(3, j, "The number of doors should be 3 after setting it.");
     }
 }
