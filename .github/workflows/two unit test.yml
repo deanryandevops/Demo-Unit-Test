@@ -30,6 +30,7 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           testMode: editmode
+          githubToken: ${{ secrets.TOKEN }}
           customParameters: -testFilter=CarTest.GetNoDoors_Test,CarTest.SetNoDoors_Test
       
       # Upload Test Results
