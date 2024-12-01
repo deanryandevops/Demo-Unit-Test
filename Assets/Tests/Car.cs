@@ -1,23 +1,16 @@
-
 public static class Car
 {
-    private static int noOfDoors = 1;  // Default value
+    private static int noOfDoors;
 
-    ////
+    // Static property to get the number of doors
     public static int GetNoDoors
     {
         get { return noOfDoors; }
     }
 
-    public static void SetNoDoors(int doors)
+    // Static method to set the number of doors
+    public static void SetNoDoors(int value)
     {
-        if (noOfDoors < 1 || noOfDoors > 5)
-        {
-            noOfDoors = 1;
-        }
-        else
-        {
-            Car.noOfDoors = doors;
-        }
+        noOfDoors = value;
     }
 }

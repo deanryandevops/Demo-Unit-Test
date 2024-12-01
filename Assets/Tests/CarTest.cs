@@ -5,7 +5,7 @@ public class CarTest
     [Test]
     public void GetNoDoors_Test()
     {
-        // Assuming GetNoDoors is a static property or method
+        // Assuming GetNoDoors is a static property
         int j = Car.GetNoDoors;
 
         // Correct assertion to compare integers
