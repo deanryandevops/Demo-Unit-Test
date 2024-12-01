@@ -24,6 +24,10 @@ jobs:
       # Run Unity Edit Mode Tests
       - name: Run Unity Edit Mode Tests
         uses: game-ci/unity-test-runner@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           testMode: editmode
           customParameters: -testFilter=CarTest.GetNoDoors_Test,CarTest.SetNoDoors_Test
